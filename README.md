@@ -39,6 +39,7 @@ Then invoke it in Claude Code with `/strategy-brief`, or just describe the task 
 | `references/graph-kit.css` | On-brand, **data-honest** chart components (scorecard, crowded-vs-sparse columns, gradient bars, heatmap, funnel, timeline, two-track, sources). Bars are gradient-on-track (never a collapsing child fill); value labels are dark and outside. |
 | `references/page-kit.html` | A minimal scaffold wiring up each component the correct way. |
 | `references/graph-critic.md` | Render commands (headless Chrome + sips), the per-figure rubric, and the known pitfalls + fixes. |
+| `references/memory.md` | **mem0 wiring** — search prior lessons at the start, write new learnings at the end, so the skill self-improves. Uses `MEM0_API_KEY` (env var; never commit the key). |
 
 ## Principles (the short version)
 
@@ -49,6 +50,7 @@ Then invoke it in Claude Code with `/strategy-brief`, or just describe the task 
 5. **Actually run the graph-critic agent.** Unreviewed graphs ship broken.
 6. Data-honest graphs: proportional, single-unit axes, readable labels.
 7. One reader, one purpose.
+8. **Self-improving** — load prior lessons + subject context from mem0 at the start, write new learnings at the end. Set `MEM0_API_KEY` in your environment to enable it (the key is never stored in this repo).
 
 ## License
 

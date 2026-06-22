@@ -1,0 +1,6 @@
+# never commit secrets / local config
+.env
+.env.*
+*.local
+secrets*
+*.key

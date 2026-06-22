@@ -19,12 +19,13 @@ Built from a real engagement; the rules below are scar tissue — follow them.
 5. **Actually run the graph-critic agent.** The single biggest failure mode is *eyeballing the graphs yourself and skipping the review agent.* Render the page to images and have an agent judge every graph. Unreviewed graphs ship broken.
 6. **Data-honest graphs.** Bars proportional on a real shared axis; never mix units on one axis; never put white labels on light fills; label every axis. See `references/graph-kit.css` — it is data-honest by construction.
 7. **Audience-aware framing.** Write for the actual reader (a mentor? an investor? the founder?). One reader, one purpose.
+8. **Remember across runs.** Load prior lessons + subject context at the start and write new learnings at the end (mem0; see `references/memory.md`). The skill should get *better every time*, not repeat its mistakes.
 
 ## The pipeline
 
 Use the **Workflow** tool for the multi-agent stages (it gives deterministic fan-out + adversarial review). `references/workflow.js` is a ready template — adapt its prompts/schemas to the subject. Phases:
 
-**Phase 0 — Scope (you, with the human).** Establish: the question, the goal, the real numbers, the audience, the values/constraints, what "done" looks like. Ask clarifying questions. **Checkpoint: confirm scope before research.**
+**Phase 0 — Load memory + scope.** First **search mem0** (`references/memory.md`) for prior skill lessons (`user_id: strategy-brief-skill`) and any saved context on this subject (`user_id: <subject>`); fold the hits into the agents' context. Then scope with the human: the question, the goal, the real numbers, the audience, the values/constraints, what "done" looks like. Ask clarifying questions. **Checkpoint: confirm scope before research.**
 
 **Phase 1 — Research** (parallel, web-enabled agents; each returns claims with working URLs). Typical agents: market saturation/supply · demand & willingness-to-pay · benchmarks (conversion/retention/pricing) · the relevant people/mentors/networks · positioning/analogs · regulatory · **evidence-harvest** (every load-bearing claim → primary URL; target ≥40 distinct sources). Use `WebSearch`/`WebFetch` (load via ToolSearch). For pages WebFetch can't reach (e.g. gov sites without HTTPS), `curl` directly and strip tags.
 
@@ -44,11 +45,14 @@ Use the **Workflow** tool for the multi-agent stages (it gives deterministic fan
 
 **Phase 8 — Deploy + verify.** Deploy (e.g. `vercel --prod --yes` from the site dir). Then **curl-verify live**: 200, `noindex` present, key content present, every link resolves, page absent from sitemap if unlisted.
 
+**Phase 9 — Persist learnings.** Write back to mem0 what this run taught (`references/memory.md`): durable **skill lessons** (critic findings, framings that worked/failed) → `strategy-brief-skill`; verified **subject facts + sources** → `<subject>`. This is what makes the next run start smarter.
+
 ## Reference files
 
 - `references/workflow.js` — adaptable Workflow script: research → evidence-strength → synthesis → review-gates → final. Edit prompts/schemas, then run via the Workflow tool (or `Workflow({scriptPath})`).
 - `references/graph-kit.css` + `references/page-kit.html` — the proven on-brand design system and **data-honest** graph components (scorecard, crowded-vs-sparse columns, gradient bars, heatmap, funnel, timeline, two-track diagram, dense table). Bars are painted as a gradient on the track (NOT a child `width:%` fill — that collapses); value labels are dark and sit *outside* the bar.
 - `references/graph-critic.md` — render commands (headless-Chrome screenshot + `sips` crop) and the per-figure rubric + known pitfalls.
+- `references/memory.md` — mem0 wiring (search at start, write at end; `MEM0_API_KEY` env var) so the skill self-improves across runs.
 
 ## Common failure modes (seen for real → fixed)
 
