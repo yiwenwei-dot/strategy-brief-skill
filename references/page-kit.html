@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow"><!-- keep if unlisted -->
+<title>Strategy Brief — page-kit scaffold</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="graph-kit.css"><!-- inline this <style> for a single-file page -->
+</head>
+<body>
+<div class="wrap">
+
+<!-- SCORECARD (e.g. a "funding-ready" goal): targets + what each proves. Citations link DIRECTLY to source. -->
+<section><span class="eyebrow">The goal</span>
+  <div class="fig"><div class="sn">Figure 1 · scorecard</div>
+    <table class="score">
+      <tr><td>Primary metric</td><td class="tgt">~8 / ~40 ≈ 20%</td><td>why it matters <sup><a href="https://example.com/benchmark" target="_blank" rel="noopener">1</a></sup></td></tr>
+      <tr><td>Usage</td><td class="tgt">~40</td><td>real activation, not signups</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- CROWDED vs SPARSE — mixed-unit facts become chips, never bars on one axis -->
+<section><span class="eyebrow">The market</span>
+  <div class="fig"><div class="sn">Figure 2 · saturation</div>
+    <div class="vs">
+      <div class="vscol over"><div class="vshd">🔴 Crowded — OVERSERVED</div><div class="chip">70,000+ cos; 70–90% fail <sup><a href="#" target="_blank">2</a></sup></div></div>
+      <div class="vscol under"><div class="vshd">🟢 Open — UNDER-SERVED</div><div class="chip">incumbents retreating <sup><a href="#" target="_blank">3</a></sup></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BARS — gradient on track + dark value OUTSIDE. width % is in the inline gradient stop. -->
+<section><span class="eyebrow">Affordability</span>
+  <div class="fig"><div class="sn">Figure 3 · annual price</div>
+    <div class="axisnote">shared scale $0 → $150 · bars proportional</div>
+    <div class="bars">
+      <div class="barrow"><span class="lab">Our tier</span><div class="track" style="background:linear-gradient(90deg,var(--sky-deep) 0 52.7%,var(--track) 52.7% 100%);"></div><span class="bval">$79</span></div>
+      <div class="barrow"><span class="lab">Competitor</span><div class="track" style="background:linear-gradient(90deg,var(--grass) 0 92%,var(--track) 92% 100%);"></div><span class="bval">$138</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HEATMAP — score/categorical matrix -->
+<section><span class="eyebrow">Fit</span>
+  <div class="fig"><div class="sn">Figure 4 · strength × segment (1–5)</div>
+    <div class="hm"><div class="hmgrid" style="grid-template-columns:1.6fr 1fr 1fr 1fr;">
+      <div class="colhead"></div><div class="colhead">A</div><div class="colhead">B</div><div class="colhead">C</div>
+      <div class="rowlab">Strength one</div><div class="hcell s2"><span class="sc">2</span></div><div class="hcell s5"><span class="sc">5</span></div><div class="hcell s4"><span class="sc">4</span></div>
+    </div></div>
+    <div class="legend"><span><span class="dot s5"></span>5</span><span><span class="dot s1"></span>1</span></div>
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section><span class="eyebrow">The plan</span>
+  <div class="fig"><div class="sn">Figure 5 · funnel</div>
+    <div class="funnel">
+      <div class="fr"><span class="fl">Reach</span><div class="fbar" style="width:100%">~2,846</div></div>
+      <div class="fr"><span class="fl">Retained</span><div class="fbar prime" style="width:20%">~8</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<div class="fig"><div class="sn">Figure 6 · weekly ladder</div>
+  <div class="tl"><div class="tlgrid">
+    <div class="wk"><div class="wn">W1</div><div class="dt">dates</div><div class="goal">headline number</div></div>
+  </div></div>
+  <span class="awayband">⚑ note any availability gap here</span>
+</div>
+
+<!-- TWO-TRACK -->
+<div class="fig"><div class="sn">Figure 7 · two tracks</div>
+  <div class="tracks">
+    <div class="track t1"><b>Track 1</b><div class="res">→ outcome</div></div>
+    <div class="track t2"><b>Track 2</b><div class="res">→ outcome</div></div>
+  </div>
+</div>
+
+<!-- SOURCES — also link out; plus a link to the full report -->
+<section><span class="eyebrow">Sources</span>
+  <div class="src"><ol>
+    <li><a href="https://example.com/benchmark" target="_blank" rel="noopener">Source title</a> <span class="flag">[secondary — directional]</span></li>
+  </ol></div>
+  <p style="margin-top:18px;"><a href="/report-detail" style="font-weight:800;">📄 Read the full sourced report →</a> · <a href="/report.md">raw .md</a></p>
+</section>
+
+</div>
+</body>
+</html>

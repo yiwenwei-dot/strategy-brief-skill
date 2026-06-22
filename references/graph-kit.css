@@ -1,0 +1,100 @@
+/* strategy-brief — graph-kit.css
+   On-brand, data-honest CSS chart components. Pair with page-kit.html.
+   Palette here is a soft "trust" theme — swap the :root tokens to rebrand.
+   KEY data-honesty rules baked in:
+   - Bars are painted as a GRADIENT ON THE TRACK (color 0..X%, then a neutral),
+     NOT a child <div width:X%> (that collapses when height:100% has no context).
+   - Bar VALUE labels are dark and sit OUTSIDE the bar (guaranteed contrast).
+   - Heatmap white-text cells get a text-shadow for legibility.
+   - Never put two different units on one axis. Label every axis. */
+
+:root{
+  --sky:#9fd8f0;--sky-light:#d7eef9;--sky-deep:#5fb3d4;
+  --grass:#7cc47a;--grass-light:#b7e0a3;--grass-deep:#4f9a4c;
+  --sun:#ffd66b;--sun-warm:#ffb454;--coral:#ec8a6b;--coral-deep:#d96f4f;
+  --cream:#fff9ec;--ink:#2a4d5c;--ink-soft:#5b7d8a;--line:#e7e0cf;--white:#fff;--track:#f2ecdd;
+  --s1:#ec8a6b;--s2:#ffb454;--s3:#ffd66b;--s4:#7cc47a;--s5:#4f9a4c; /* 1..5 scale */
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',-apple-system,sans-serif;color:var(--ink);background:var(--cream);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.01em;}
+a{color:inherit;text-decoration:none;}
+sup a{color:var(--sky-deep);font-weight:700;font-size:.62em;padding:0 1px;}          /* citation -> link DIRECTLY to source URL, target=_blank */
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+section{padding:50px 0;border-bottom:1px solid var(--line);}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--sky-deep);margin-bottom:12px;}
+.lead{color:var(--ink-soft);max-width:700px;}
+
+/* figure card */
+.fig{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px;margin:20px 0 8px;box-shadow:0 8px 26px rgba(42,77,92,.05);}
+.fig h4{font-size:16px;font-weight:600;margin-bottom:3px;}
+.fig .sn{font-size:12px;color:var(--ink-soft);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;}
+.fig .cap{font-size:12.5px;color:var(--ink-soft);margin-top:12px;line-height:1.5;}
+.fig .cap b{color:var(--ink);}
+
+/* BARS — gradient on track + dark value outside (data-honest, always renders) */
+.bars{display:flex;flex-direction:column;gap:9px;}
+.barrow{display:grid;grid-template-columns:165px 1fr 72px;align-items:center;gap:12px;}
+.barrow .lab{font-size:13px;font-weight:700;text-align:right;}
+.barrow .track{height:26px;border-radius:8px;background:var(--track);}         /* set inline: background:linear-gradient(90deg,var(--sky-deep) 0 NN%,var(--track) NN% 100%) */
+.barrow .bval{font-weight:800;font-size:14px;color:var(--ink);}
+.axisnote{font-size:11px;color:var(--ink-soft);font-weight:700;margin:2px 0 10px;}
+@media(max-width:560px){.barrow{grid-template-columns:104px 1fr 60px;}.barrow .lab{font-size:11px;}}
+
+/* HEATMAP — categorical/score matrix */
+.hm{overflow-x:auto;}
+.hmgrid{display:grid;gap:6px;min-width:520px;}
+.hmgrid .hcell{padding:9px 8px;border-radius:9px;font-size:12.5px;text-align:center;font-weight:700;line-height:1.25;}
+.hmgrid .rowlab{text-align:left;font-weight:700;font-size:12.5px;padding:9px 6px;}
+.hmgrid .colhead{font-weight:800;font-size:12.5px;text-align:center;padding:6px;}
+.s1{background:var(--s1);color:#fff;} .s2{background:var(--s2);color:#3a2a12;}
+.s3{background:var(--s3);color:#4a3a12;} .s4{background:var(--s4);color:#fff;} .s5{background:var(--s5);color:#fff;}
+.s1,.s4,.s5{text-shadow:0 1px 1px rgba(0,0,0,.4);}   /* legible white on saturated fills */
+.sc{font-size:15px;font-weight:800;display:block;}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-soft);margin-top:12px;align-items:center;}
+.legend .dot{width:13px;height:13px;border-radius:4px;display:inline-block;margin-right:4px;}
+
+/* SCORECARD table */
+.score{width:100%;border-collapse:separate;border-spacing:0 8px;}
+.score td{padding:12px 14px;background:#fffdf7;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.score td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px;font-weight:800;width:34%;}
+.score td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0;color:var(--ink-soft);font-size:13.5px;}
+.score .tgt{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--grass-deep);}
+
+/* CROWDED-vs-SPARSE columns (mixed-unit facts -> chips, NOT bars) */
+.vs{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:680px){.vs{grid-template-columns:1fr 1fr;}}
+.vscol{border-radius:14px;padding:14px;border:1px solid var(--line);}
+.vscol.over{background:#fdeee7;} .vscol.under{background:#eef7e9;}
+.vshd{font-weight:800;font-size:13.5px;margin-bottom:10px;}
+.chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12.5px;font-weight:600;margin-bottom:7px;}
+
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;gap:8px;}
+.funnel .fr{display:grid;grid-template-columns:215px 1fr;align-items:center;gap:12px;}
+.funnel .fl{font-size:13px;font-weight:700;text-align:right;}
+.funnel .fbar{height:34px;border-radius:9px;background:linear-gradient(90deg,var(--sky),var(--sky-deep));display:flex;align-items:center;padding-left:13px;color:#fff;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.5);}
+.funnel .fbar.prime{background:linear-gradient(90deg,var(--grass),var(--grass-deep));}
+
+/* TIMELINE cards */
+.tl{overflow-x:auto;}
+.tlgrid{display:grid;grid-template-columns:repeat(6,minmax(140px,1fr));gap:10px;min-width:780px;}
+.wk{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fffdf7;}
+.wk .wn{font-size:11px;font-weight:800;color:var(--sky-deep);text-transform:uppercase;}
+.wk .dt{font-size:10.5px;color:var(--ink-soft);margin-bottom:7px;}
+.wk .goal{font-size:13px;font-weight:700;line-height:1.35;}
+.awayband{margin-top:12px;font-size:12px;color:var(--coral-deep);background:#fdeee7;border-radius:8px;padding:7px 11px;display:inline-block;font-weight:700;}
+
+/* TWO-TRACK diagram */
+.tracks{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:720px){.tracks{grid-template-columns:1fr 1fr;}}
+.track{border:1px solid var(--line);border-radius:14px;padding:16px;}
+.track.t1{background:#eef5fb;} .track.t2{background:#eef7e9;}
+.track .res{margin-top:9px;font-size:12.5px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px;}
+
+/* SOURCES list (bottom; also link each li out) */
+.src ol{padding-left:0;list-style:none;counter-reset:s;}
+.src li{padding:6px 0;border-bottom:1px dotted var(--line);counter-increment:s;font-size:13px;}
+.src li:before{content:"["counter(s)"] ";font-weight:800;color:var(--sky-deep);}
+.src a{color:var(--sky-deep);text-decoration:underline;word-break:break-word;}
+.src .flag{font-size:11px;color:var(--coral-deep);font-weight:700;}
